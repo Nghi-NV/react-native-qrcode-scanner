@@ -242,6 +242,7 @@ export default class QRCodeScanner extends Component {
 	_renderCameraComponent() {
 		return (
 			<Camera
+				ref={cam => (this.camera = cam)}
 				androidCameraPermissionOptions={{
 					title: this.props.permissionDialogTitle,
 					message: this.props.permissionDialogMessage,
@@ -257,6 +258,10 @@ export default class QRCodeScanner extends Component {
 				{this._renderCameraMarker()}
 			</Camera>
 		);
+	}
+
+	capture = () => {
+		return this.camera.takePictureAsync();
 	}
 
 	_renderCamera() {
